@@ -1,0 +1,90 @@
+<html>
+
+<head>
+
+<title>Github Finder</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="index.css">
+
+
+</head>
+<body>
+    <div class="container-fluid header">
+        <nav class="navbar navbar-default">
+            <h3 class="nav-heading">Github Finder</h3>
+        </nav>
+    </div>
+
+    <div class="content">
+        <div class="container-fluid input-container">
+            <div class="row">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-6 jumbotron">
+                    <h2><b>Search Github Users</b></h2>
+                    <h5>Enter a username to fetch a user profile and repos</h5>
+                    <input type="text" id="text" class="form-control"/>
+                    <button type="buttton" id="search" class="btn">Search</button>
+                </div>
+                <div class="col-lg-3"></div>
+            </div>
+        </div>
+        <div class="container-fluid data-container">
+            <div class="container" id="firstContent"></div>
+        </div>
+        <div class="container-fluid" id="repo-container">
+            <div class="container">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Repos Of The User</div>
+                    <div class="panel-body" id="repos"></div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid" id="branch-input">
+            <div class="container">
+                <div class="col-lg-4">
+                    <h2>Search Branches of a Repo</h2>
+                    <select class="form-control" id="branchInput"></select>
+                    <button class="btn btn-success marginT20" id="branchButton">Search Branch</button>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">    
+            <div class="container" id="branch-container">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Branches</div>
+                    <div class="panel-body" id="branches"></div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid" id="commit-input">
+            <div class="container">
+                <div class="col-lg-4">
+                    <h2>Search Commits of a Repo</h2>
+                    <select class="form-control" id="commitInput"></select>
+                    <button class="btn btn-success marginT20" id="commitButton">Search Commits</button>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">    
+            <div class="container" id="commit-container">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Commits</div>
+                    <div class="panel-body" id="commits"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    <div class="container-fluid footer">
+        <h4>&copy; <i>Nipun Jain</i></h4>
+    </div>
+
+   <!--Javascript file--> 
+    <script src="ui.js"></script>
+    <script src="github.js"></script>
+    <script src="script.js"></script>  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>
