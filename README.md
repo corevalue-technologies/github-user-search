@@ -5,7 +5,7 @@
 ##### Below is a screenshot for the application:
 
 <p align="center">
-  <img width="460" height="300" src="screenshot.png">
+  <img width="460" height="300" src="screenshot1.png">
 </p>
 
 ### Getting Started
