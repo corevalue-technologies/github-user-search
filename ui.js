@@ -11,8 +11,8 @@ class UI {
         this.branch_container =  document.getElementById('branch-container');
         this.commit_input = document.getElementById('commit-input');
         this.branch_input = document.getElementById('branch-input');
-        this.commitInput = document.getElementById('commitInput');
-        this.branchInput = document.getElementById('branchInput');
+        this.commitSelect = document.getElementById('commitSelect');
+        this.branchSelect = document.getElementById('branchSelect');
     }
 
     showProfile(user){
@@ -22,9 +22,9 @@ class UI {
             User Details
         </div>
         <div class="panel-body">
-            <div class="col-lg-4" style="text-align: center;">
-                <img src=${user.avatar_url} class="img-responsive" style="width: 100%; height: 428px;"/>
-                <a href="https://github.com/${user.login}" target="blank" style="margin-top: 10px;">See Profle In GitHub</a>
+            <div class="col-lg-4 text-center">
+                <img src=${user.avatar_url} class="img-responsive user-image"/>
+                <a href="https://github.com/${user.login}" target="blank" class="marginT10">See Profle In GitHub</a>
             </div>   
             <div class="col-lg-8">
                 <ul class="list-group">
@@ -54,45 +54,46 @@ class UI {
 
         </div>
         `
+        document.getElementsByClassName('content')[0].scrollTop = document.getElementsByClassName('data-container')[0].offsetTop - 100
     }
 
     showRepos(repos){
+        if (repos.length > 0) {
+            let list = '';
+            let repoName = '';
 
-        let output = '';
-        let output2 = '';
-        let output3 = '';
-
-        repos.forEach((repo) => {
-            output += `
-                <li class="list-group-item">
-                    <a href="${repo.html_url}" target="_blank">${repo.name}</a>
-                    <span class="badge badge-blue">Stars: ${repo.stargazers_count}</span>
-                    <span class="badge badge-red">Watchers: ${repo.watchers_count}</span>
-                    <span class="badge badge-green">Forks: ${repo.forks_count}</span>
-                </li>
-            `
-            output2 += `
-               <option>${repo.name}</option>
-            `
-
-            output3 += `
+            repos.forEach((repo) => {
+                list += `
+                    <li class="list-group-item flex justifySpace alignCenter">
+                        <a href="${repo.html_url}" target="_blank">${repo.name}</a>
+                        <div class=""badges>
+                            <span class="badge badge-blue">Stars: ${repo.stargazers_count}</span>
+                            <span class="badge badge-red">Watchers: ${repo.watchers_count}</span>
+                            <span class="badge badge-green">Forks: ${repo.forks_count}</span>
+                        </div>
+                    </li>
+                `
+                repoName += `
                 <option>${repo.name}</option>
-            `
-        });
-        this.commitInput.innerHTML = output2;
-        this.branchInput.innerHTML = output3;
-        this.repo_container.style.display = 'block';
-        this.commit_input.style.display = 'block';
-        this.branch_input.style.display = 'block';
-        this.repo.innerHTML = output;
+                `
+            });
+            this.commitSelect.innerHTML = repoName;
+            this.branchSelect.innerHTML = repoName;
+            this.repo_container.style.display = 'block';
+            this.commit_input.style.display = 'block';
+            this.branch_input.style.display = 'block';
+            this.repo.innerHTML = list;
+        } else {
+            this.repo_container.style.display = 'block';
+            this.repo.innerHTML = '<p class="text-center">No repositories found.</p>'
+        }
     }
 
     showCommit(commits){
         let output = '';
-        console.log(commits);
         commits.forEach((commit) => {
             output += `
-            <ul class="list-group">Commit details with Sha <b>${commit.sha}</b>    
+            <ul class="list-group">    
                 <li class="list-group-item"><b>Commit Message:</b> <span>"${commit.commit.message}"</span></li>
                 <li class="list-group-item"><b>Commit  Url: </b><a href="${commit.html_url}" target="_blank">${commit.html_url}</a></li>
                 <li class="list-group-item"><b>Commiter Name: </b>${commit.commit.author.name}</li>
@@ -103,6 +104,7 @@ class UI {
 
         this.commit.innerHTML = output;
         this.commit_container.style.display = 'block';
+        document.getElementsByClassName('content')[0].scrollTop = document.getElementById('commit-container').offsetTop - 100
     }
 
     showBranch(branches){
@@ -116,6 +118,7 @@ class UI {
 
         this.branch.innerHTML = output;
         this.branch_container.style.display = 'block';
+        document.getElementsByClassName('content')[0].scrollTop = document.getElementById('branch-container').offsetTop - 100
     }
 
 }
